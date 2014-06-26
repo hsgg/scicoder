@@ -34,6 +34,7 @@ for i in range(len(table.dtype)):
     sql_definition += ', "{0}" {1}'.format(colname, coltype)
 sql_definition += ');'
 
+print(sql_definition)
 
 
 
@@ -44,12 +45,16 @@ start = time.time()
 i = 0
 for row in table:
     sspp = Sspp()
-    for colname in table.dtype.names:
-        print(colname, row[colname])
-        setattr(sspp, colname, row[colname])
-    session.add(sspp)
 
-    break
+    for colname, nptype in table.dtype.descr:
+        #print(colname, nptype, row[colname])
+        if 'i' in nptype:
+            #print(type(row[colname]))
+            setattr(sspp, colname, int(row[colname]))
+        else:
+            setattr(sspp, colname, row[colname])
+
+    session.add(sspp)
 
     i += 1
     if i % 1000 == 0:
