@@ -57,9 +57,9 @@ for row in table:
     session.add(sspp)
 
     i += 1
-    if i % 1000 == 0:
+    if i % 10000 == 0:
         end = time.time()
-        print(i, (end - start) / 1000 * (1800000 - i) / 60, "min")
+        print(i, (end - start) / 10000 * (1800000 - i) / 60, "min")
         start = end
         session.commit()
         session.begin()
