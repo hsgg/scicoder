@@ -1,0 +1,9 @@
+read.cProfile
+table.sql
+table.sqlite
+table_done.sqlite
+
+# given files:
+ssppOut-dr9.fits
+sspp_db.sqlite
+
