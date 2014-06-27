@@ -7,14 +7,16 @@ import sqlalchemy
 from SQLiteConnection import engine, Session
 from ModelClasses import Sspp
 import time
+import fitsio
 
 
 filename = 'ssppOut-dr9.fits'
 
 
 table = fits.open(filename, memmap=True)[1].data
-
 table = table.view(np.recarray)  # make it fast:
+
+#table, header = fitsio.read(filename, ext=1, header=True, memmap=True)
 
 def numpytype2sqltype(nptype):
     if 'S' in nptype:
